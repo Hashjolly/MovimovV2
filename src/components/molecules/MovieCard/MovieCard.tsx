@@ -1,16 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@components/atoms/Button/Button";
+import { MovieCardProps } from "./MovieCard.props";
 
-interface MovieCardProps {
-  movie: {
-    id: number;
-    title: string;
-    poster_path: string;
-  };
-  isFavorite: boolean;
-  toggleFavorite: (movie: { id: number; title: string; poster_path: string }) => void;
-}
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie, isFavorite, toggleFavorite }) => {
   return (
