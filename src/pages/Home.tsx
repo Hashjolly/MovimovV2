@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@components/atoms/Button/Button";
 import "./Home.css";
-import popcornImage from '../assets/popcorn.png';
+import popcornImage from '/popcorn.png';
 
 export function Home() {
   return (

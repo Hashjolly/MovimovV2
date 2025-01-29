@@ -1,3 +1,3 @@
-import { searchMovies } from "./moviesApi";
+import { useMoviesQuery } from "./moviesApi";
 
-export { searchMovies };
+export { useMoviesQuery };

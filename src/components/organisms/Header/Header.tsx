@@ -2,7 +2,7 @@ import { useEffect, useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { useUIStore } from "app/store";
-import logo from "../../assets/logo.png";
+import logo from "/logo.png";
 import "./Header.css"
 
 export const Header: React.FC = () => {
