@@ -1,0 +1,9 @@
+.generic-input {
+    border: none;
+    border-radius: 25px;
+    padding: 0.2em 1.5em;
+    font-size: 16px;
+    margin-bottom: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
