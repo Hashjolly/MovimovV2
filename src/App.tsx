@@ -7,7 +7,7 @@ import { Skeleton, StyledButton, StyledInput } from '@components/atoms/index'
 function App() {
   const [count, setCount] = useState(0)
 
-  
+
   return (
     <>
       <div>
