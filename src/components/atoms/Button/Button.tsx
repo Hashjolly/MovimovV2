@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import './Button.css';
 
 interface IButtonProps {
     width: string;
@@ -13,21 +14,17 @@ const StyledButton = styled.button<IButtonProps>`
     width: ${(props: IButtonProps) => props.width};
     height: ${(props: IButtonProps) => props.height};
     background-color: ${(props: IButtonProps) =>
-        props.theme === 'neutral' ? '#ccc' : '#007BFF'};
+        props.theme === 'neutral' ? '#ccc' : '#04A0F9'};
     color: ${(props: IButtonProps) => (props.theme === 'neutral' ? '#000' : '#fff')};
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
 
     &:hover {
-        opacity: 0.8;
+        background-color: ${(props: IButtonProps) => (props.theme === 'neutral' ? '#aaa' : '#0056b3')};
     }
 `;
 
 const Button: React.FC<IButtonProps> = ({ width, height, theme, onClick, content }) => {
     return (
-        <StyledButton width={width} height={height} theme={theme} onClick={onClick}>
+        <StyledButton className='generic-button' width={width} height={height} theme={theme} onClick={onClick}>
             {content}
         </StyledButton>
     );
