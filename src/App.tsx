@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { StyledButton, StyledInput } from '@components/atoms/index'
+import { Skeleton, StyledButton, StyledInput } from '@components/atoms/index'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,12 +18,13 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <Skeleton width="200px" height="50px" borderRadius="10px" />
       <StyledInput width="200px" height="50px" theme="colored" placeholder="Type here..." />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
         count is {count}
         </button>
-        <StyledButton width="100px" height="50px" theme="colored" content="Click !" onClick={() => setCount((count) => count + 1)} />
+        <StyledButton width="100px" height="50px" theme="colored" label="Click !" onClick={() => setCount((count) => count + 1)} />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

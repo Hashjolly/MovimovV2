@@ -1,14 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IButtonProps } from './Button.props';
 import './Button.css';
-
-interface IButtonProps {
-    width: string;
-    height: string;
-    theme: 'neutral' | 'colored';
-    content?: string;
-    onClick?: () => void;
-}
 
 const StyledButton = styled.button<IButtonProps>`
     width: ${(props: IButtonProps) => props.width};
@@ -22,10 +15,10 @@ const StyledButton = styled.button<IButtonProps>`
     }
 `;
 
-const Button: React.FC<IButtonProps> = ({ width, height, theme, onClick, content }) => {
+const Button: React.FC<IButtonProps> = ({ width, height, theme, label, disabled, onClick }) => {
     return (
-        <StyledButton className='generic-button' width={width} height={height} theme={theme} onClick={onClick}>
-            {content}
+        <StyledButton className='generic-button' width={width} height={height} theme={theme} label={label} disabled={disabled} onClick={onClick}>
+            {label}
         </StyledButton>
     );
 };
