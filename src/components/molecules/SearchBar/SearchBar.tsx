@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import Button from '@components/atoms/Button/Button';
 import Input from '@components/atoms/Input/Input';
 import "./SearchBar.css";
-
-interface SearchBarProps {
-    onSearch: (query: string) => void;
-}
+import { SearchBarProps } from './SearchBar.props';
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     const [query, setQuery] = useState('');

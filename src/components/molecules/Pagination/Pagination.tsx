@@ -1,11 +1,7 @@
 import React from 'react';
 import Button from '@components/atoms/Button/Button';
 import "./Pagination.css"
-
-interface PaginationProps {
-  currentPage: number;
-  onPageChange: (page: number) => void;
-}
+import { PaginationProps } from './Pagination.props';
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, onPageChange }) => {
   return (
