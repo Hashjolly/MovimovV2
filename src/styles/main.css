@@ -1,0 +1,26 @@
+
+:root {
+  --main-color: #EEEEEE;
+  --second-color: #111111;
+  --third-color: #bd0000;
+  --last-color: #D4AA7D;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--second-color);
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  .popcorn {
+    background-image: url('/asssets/popcorn.png');
+  }

@@ -1,0 +1,204 @@
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--main-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--third-color);
+  }
+
+  h1 {
+    color: var(--second-color);
+  }
+
+  .logo-container:hover {
+    text-decoration: none!important;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Logo Section */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none!important;
+  }
+  
+  .logo-image {
+    height: auto;
+    width: 60px;
+    margin: 0 1.5rem;
+  }
+  
+  .logo-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  /* Navigation Links */
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 3em;
+    padding-right: 2em;
+    color: var(--third-color);
+  }
+  
+  .nav a {
+    text-decoration: none!important;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    font-weight: 700;
+    color: var(--third-color);
+  }
+  
+  .nav a:hover {
+    text-decoration: none!important;
+    color: var(--last-color);
+  }
+  
+  .nav Link {
+    text-decoration: none!important;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav Link:hover {
+    text-decoration: none!important;
+    color: var(--last-color);
+  }
+
+  #darkMode {
+    padding-bottom: 18px;
+    padding-left: 2em;
+  }
+
+  input[type="checkbox"] {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
+
+  label {
+    width: 50px;
+    height: 26px;
+    position: relative;
+    display: block;
+    border-radius: 200px;
+    box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4), inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  label:after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background:linear-gradient(to right, #ff9800, #ffcf00);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+  }
+
+  input:checked + label {
+    background: #242424;
+  }
+
+  input:checked + label:after {
+    left: calc(100% - 3px);
+    transform: translateX(-100%);
+    background: linear-gradient(180deg, #e2e2e2, #3a3a3a);
+  }
+
+  label:active:after {
+    width: 30px;
+  }
+
+  .search-bar {
+    display: flex;
+    margin: 0 3em;
+  }
+
+    /* Container du champ de recherche */
+  .search-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    width: 30vw;
+    margin: 0 auto;
+  }
+
+  /* Champ de recherche */
+  .search-input-container input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 10px 10px 10px 35px;
+    font-size: 16px;
+    border-radius: 25px;
+    background-color: transparent;
+  }
+
+  /* Icône de recherche (loupe) */
+  .search-icon {
+    position: absolute;
+    left: 15px;
+    color: #888;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .search-icon:hover {
+    color: #555;
+  }
+
+  
+  /* Responsive Navbar */
+  @media (max-width: 768px) {
+    .nav {
+      display: none; /* Cacher la navbar sur mobile */
+      flex-direction: column;
+      background-color:  var(--main-color);
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+      text-align: center;
+      padding: 1rem 0;
+    }
+  
+    .nav.active {
+      display: flex; /* Afficher la navbar quand active */
+    }
+  }
+  
+  /* Toggle Button for Mobile */
+  .nav-toggle {
+    display: none;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: block; /* Afficher le bouton burger sur mobile */
+    }
+  }
+  
