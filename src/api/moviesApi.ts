@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Movie, SearchResponse } from './api.props'; // On importe les interfaces Movie et SearchResponse
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_TMDB_BASE_URL,
@@ -9,20 +9,8 @@ const api = axios.create({
   },
 });
 
-export interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  release_date: string;
-  poster_path: string;
-}
 
-interface SearchResponse {
-  results: Movie[];
-  total_pages: number;
-}
-
-const fetchMovies = async (query: string, page: number): Promise<SearchResponse> => {
+export const fetchMovies = async (query: string, page: number): Promise<SearchResponse> => {
   const { data } = await api.get('/search/movie', {
     params: {
       query,
@@ -32,9 +20,10 @@ const fetchMovies = async (query: string, page: number): Promise<SearchResponse>
   return data;
 };
 
-export const useMoviesQuery = (query: string, page: number) => {
-  return useQuery<SearchResponse>({
-    queryKey: ['movies', query, page], 
-    queryFn: () => fetchMovies(query, page), 
+
+export const fetchMovieDetails = async (id: number): Promise<Movie> => {
+  const { data } = await api.get(`/movie/${id}`, {
+    params: { append_to_response: 'videos' },
   });
+  return data;
 };

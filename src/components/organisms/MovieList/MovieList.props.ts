@@ -1,4 +1,4 @@
-import { Movie } from "api/moviesApi";
+import { Movie } from "api";
 
 export interface MovieListProps {
     movies: Movie[];

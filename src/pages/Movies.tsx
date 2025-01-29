@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useMoviesStore } from 'app/store';
 import { useFavoritesStore } from 'app/store';
-import { useMoviesQuery } from 'api/moviesApi'; 
+import { useMoviesQuery } from 'api';
 import { MovieList } from '@components/organisms';
 import { Pagination } from '@components/molecules';
-import { Movie } from 'api/moviesApi';
+import { Movie } from 'api';
 import "./Movies.css"
 
 export default function Movies() {
