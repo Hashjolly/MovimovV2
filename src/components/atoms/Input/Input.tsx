@@ -1,14 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import './Input.css';
-
-interface IInputProps {
-    width: string;
-    height: string;
-    theme: 'neutral' | 'colored';
-    placeholder?: string;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { IInputProps } from './Input.props';
 
 const StyledInput = styled.input<IInputProps>`
     width: ${(props: IInputProps) => props.width};
