@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "@components/atoms/Button/Button";
 import "./Home.css";
 import popcornImage from '../assets/popcorn.png';
 
@@ -8,7 +9,6 @@ export function Home() {
     <div className="home-container">
       <section className="introduction">
         <div className="introduction-text">
-            <h1>Page Home</h1>
           <h2>Trouvez, explorez et partagez vos films préférés</h2>
           <p>
             Avec <strong>Movimov</strong>, accédez à une immense base de données
@@ -16,7 +16,13 @@ export function Home() {
             créez vos listes personnalisées !
           </p>
           <Link to="/movies">
-            <button className="start-button">Commencer maintenant</button>
+          <Button
+            width="200px"
+            height="50px"
+            theme="colored"
+            label="Commencer maintenant"
+            disabled={false}
+            onClick={() => {}} />
           </Link>
         </div>
         <div className="introduction-image">
