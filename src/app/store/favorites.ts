@@ -1,24 +1,27 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import { Movie } from 'api';
 
 interface FavoriteStore {
   favorites: Movie[];
   addFavorite: (movie: Movie) => void;
-  removeFavorite: (movie: Movie) => void;
+  removeFavorite: (movieId: number) => void; 
 }
 
-export const useFavoritesStore = create<FavoriteStore>((set) => ({
-  favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
-  addFavorite: (movie: Movie) =>
-    set((state) => {
-      const updatedFavorites = [...state.favorites, movie];
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      return { favorites: updatedFavorites };
+export const useFavoritesStore = create<FavoriteStore>()(
+  persist(
+    (set) => ({
+      favorites: [],
+      addFavorite: (movie: Movie) =>
+        set((state) => ({ favorites: [...state.favorites, movie] })),
+      removeFavorite: (movieId: number) =>
+        set((state) => ({
+          favorites: state.favorites.filter((fav) => fav.id !== movieId),
+        })),
     }),
-  removeFavorite: (movie: Movie) =>
-    set((state) => {
-      const updatedFavorites = state.favorites.filter((fav) => fav.id !== movie.id);
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      return { favorites: updatedFavorites };
-    }),
-}));
+    {
+      name: 'favorites-storage',
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);
