@@ -1,33 +1,23 @@
-import { Link } from "react-router-dom";
 import { MovieListProps } from "./MovieList.props";
-import { Button } from "@components/atoms/Button";
+import { useFavoritesStore } from "app/store";
+import MovieCard from "@components/molecules/MovieCard/MovieCard";
 import "./MovieList.css";
 
 const MovieList: React.FC<MovieListProps> = ({ movies, favoritesList, toggleFavorite }) => {
+  const isFavorite = (movieId: number) => {
+    return favoritesList.some(favorite => favorite.id === movieId);
+  };
+
   return (
     <div className="movies-grid">
       {movies.map((movie) => (
         <div key={movie.id} className="movie-card-component">
-          <Link className="movie-card" to={`/movie/${movie.id}`}>
-            <img
-              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-              alt={movie.title}
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            isFavorite={isFavorite(movie.id)}
+            toggleFavorite={() => toggleFavorite(movie)}
             />
-            <h3>{movie.title}</h3>
-            <Button
-              width="90%"
-              height="50px"
-              theme="colored"
-              label={favoritesList.find((fav) => fav.id === movie.id)
-                ? "Retirer des favoris"
-                : "Ajouter aux favoris"}
-              disabled={false}
-              onClick={(e) => {
-                e.preventDefault();
-                toggleFavorite(movie);
-              }}
-            />
-          </Link>
         </div>
       ))}
     </div>

@@ -11,13 +11,15 @@ export default function Favorites() {
       {favorites.length > 0 ? (
         <div className="favorites-grid">
           {favorites.map((movie) => (
-          <MovieCard
-          key={movie.id}
-          movie={movie}
-          isFavorite={true}
-          toggleFavorite={() => removeFavorite(movie.id)} // ✅ On passe uniquement l'ID
-          />        
-          ))}
+            <div className="favorite-card-component">
+            <MovieCard
+            key={movie.id}
+            movie={movie}
+            isFavorite={true}
+            toggleFavorite={() => removeFavorite(movie.id)} // ✅ On passe uniquement l'ID
+            />
+            </div>
+            ))}
         </div>
       ) : (
         <p>Aucun film dans vos favoris.</p>

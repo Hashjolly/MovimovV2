@@ -19,27 +19,3 @@
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.movie-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    padding-bottom: 15px;
-}
-
-.movie-card-component:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.movie-card img {
-    border-radius: 4px;
-    max-width: 100%;
-    height: auto;
-}
-
-h3 {
-    color: var(--main-color);
-}

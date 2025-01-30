@@ -38,7 +38,7 @@ export default function Movies() {
 
   const toggleFavorite = (movie: Movie) => {
     favorites.find((fav) => fav.id === movie.id)
-      ? removeFavorite(movie)
+      ? removeFavorite(movie.id)
       : addFavorite(movie);
   };
 

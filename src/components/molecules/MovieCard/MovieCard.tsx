@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@components/atoms/Button/Button";
 import { MovieCardProps } from "./MovieCard.props";
-
+import './MovieCard.css';
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie, isFavorite, toggleFavorite }) => {
   return (
@@ -15,9 +15,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, isFavorite, toggleFavorite
       </Link>
       <h3>{movie.title}</h3>
       <Button
-        width="150px"
-        height="40px"
-        theme="neutral"
+        width="90%"
+        height="50px"
+        theme="colored"
         label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
         onClick={() => toggleFavorite(movie)}
       />

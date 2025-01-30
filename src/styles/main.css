@@ -43,6 +43,11 @@ a {
   transition: border-color 0.25s, transform 0.2s ease-in-out;
 }
 
+img {
+  width: 11vw;
+  height: auto;
+}
+
 button {
   cursor: pointer;
   transition: border-color 0.25s, transform 0.2s ease-in-out;
