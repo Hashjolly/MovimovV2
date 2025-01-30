@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Button from '@components/atoms/Button/Button';
-import Input from '@components/atoms/Input/Input';
+import { Button } from "@components/atoms/Button/Button";
+import { Input } from '@components/atoms/Input/Input';
 import "./SearchBar.css";
 import { SearchBarProps } from './SearchBar.props';
 
@@ -18,7 +18,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
             <Input
                 width="250px"
                 height="40px"
-                theme="neutral"
                 placeholder="Rechercher un film..."
                 onChange={(e) => setQuery(e.target.value)}
             />

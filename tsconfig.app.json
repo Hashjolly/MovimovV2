@@ -33,6 +33,7 @@
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
       "@services/*": ["services/*"],
+      "@api/*": ["api/*"],
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieDetails } from '../api/moviesApi'; 
-import { Movie } from '../api/api.props'; 
+import { fetchMovieDetails } from '../../api/moviesApi'; 
+import { Movie } from '@api/index'; 
 import "./MovieDetails.css"
 
 export function MovieDetails() {

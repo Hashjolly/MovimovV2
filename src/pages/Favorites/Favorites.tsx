@@ -2,6 +2,7 @@ import { useFavoritesStore } from "app/store";
 import { Link } from "react-router-dom";
 import { Movie } from "api/api.props";
 import { useEffect } from "react";
+import "./Favorites.css";
 
 export default function Favorites() {
   const { favorites, removeFavorite } = useFavoritesStore();

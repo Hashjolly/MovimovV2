@@ -1,36 +1,65 @@
-import { Link } from "react-router-dom";
+import { useState, FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@atoms/Button";
 import { Input }  from "@atoms/Input";
 import "./Home.css";
 import popcornImage from '/popcorn.png';
 
 export function Home() {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [placeHolder, setplaceHolder] = useState<string>("Rechercher un film ou une série...");
+  const [searchEmpty, setSearchEmpty] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/movies?search=${encodeURIComponent(searchTerm)}`);
+    } else {
+      setSearchEmpty(true);
+      setplaceHolder("Veuillez entrer un titre de film ou de série.");
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if(e.target.value.trim() === "") {
+      setplaceHolder("Rechercher un film ou une série...");
+    }
+    setSearchTerm(e.target.value);
+    setSearchEmpty(false);
+  };
+
   return (
     <div className="home-container">
       <section className="introduction">
         <div className="introduction-text">
-          <Header />
           <h2>Trouvez, explorez et partagez vos films préférés</h2>
           <p>
             Avec <strong>Movimov</strong>, accédez à une immense base de données
             de films, séries et documentaires. Découvrez des trésors cachés et
             créez vos listes personnalisées !
           </p>
-          <Input
-            width="20vw"
-            height="50px"
-            placeholder="Rechercher un film ou une série..."
-            onChange={() => {}} />
-          <br />
-          <Link to="/movies">
-          <Button
-            width="200px"
-            height="50px"
-            theme="colored"
-            label="Commencer maintenant"
-            disabled={false}
-            onClick={() => {}} />
-          </Link>
+          <div className="home-research">
+            <Input
+              width="20vw"
+              height="50px"
+              placeholder={placeHolder}
+              searchEmpty={searchEmpty}
+              onSearch={handleSearch}
+              onChange={handleInputChange} 
+            />
+            <br />
+            <Link to="/movies">
+            <Button
+              width="200px"
+              height="50px"
+              theme="colored"
+              label="Commencer maintenant"
+              disabled={false}
+              onClick={handleSearch}
+            />
+            </Link>
+          </div>
         </div>
         <div className="introduction-image">
           <img

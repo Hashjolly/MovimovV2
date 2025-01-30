@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchMovies } from 'api/moviesApi';
-import { SearchResponse } from 'api/moviesApi';
+import { SearchResponse } from 'api/index';
 
 export const useMoviesQuery = (query: string, page: number) => {
     return useQuery<SearchResponse>({

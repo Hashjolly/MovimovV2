@@ -1,0 +1,30 @@
+.notfound-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 80vh;
+    background-color: var(--main-color); /* Couleur de fond */
+    color: var(--second-color); /* Couleur de texte */
+    padding: 20px;
+  }
+
+.notfound-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .notfound-container h1 {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    color: var(--last-color); /* Couleur d'accent */
+  }
+  
+  .notfound-container p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }

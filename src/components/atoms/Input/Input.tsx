@@ -9,12 +9,12 @@ const StyledForm = styled.form<IInputProps>`
     height: ${(props: IInputProps) => props.height};
 `;
 
-export const Input: React.FC<IInputProps> = ({ width, height, placeholder, onChange }) => {
+export const Input: React.FC<IInputProps> = ({ width, height, placeholder, searchEmpty, onSearch, onChange }) => {
     return (
-        <StyledForm className='search-bar' width={width} height={height} onSubmit={(e) => e.preventDefault()}>
-            <FaSearch className="search-icon" />
+        <StyledForm className='search-bar' width={width} height={height} onSubmit={onSearch}>
+            <FaSearch className="search-icon" onClick={onSearch} />
             <input
-                className='search-input-container'
+                className={`search-input-container ${searchEmpty ? 'search-input-container-empty' : ''}`}
                 placeholder={placeholder}
                 onChange={onChange}
             />

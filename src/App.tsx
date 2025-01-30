@@ -1,10 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, Movies, MovieDetails, Favorites, NotFound } from '@pages/index'
+import { Header } from '@components/organisms/Header/Header';
+import { Footer } from '@components/organisms/Footer/Footer';
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movies" element={<Movies />} />
@@ -12,6 +15,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )

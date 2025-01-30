@@ -1,12 +1,13 @@
 import { useEffect, useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
+import { Input }  from "@atoms/Input";
 import { useUIStore } from "app/store";
 import logo from "/logo.png"
 import "./Header.css"
 
 export const Header: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [placeHolder, setplaceHolder] = useState<string>("Rechercher un film ou une série...");
   const navigate = useNavigate();
 
   const { darkMode, mainColor, secondColor, thirdColor, detailsColor, setDarkMode, setLightMode } = useUIStore();
@@ -15,6 +16,8 @@ export const Header: React.FC = () => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
       navigate(`/movies?search=${encodeURIComponent(searchTerm)}`);
+    } else {
+      setplaceHolder("Veuillez entrer un titre de film ou de série");
     }
   };
 
@@ -33,17 +36,15 @@ export const Header: React.FC = () => {
           <h1 className="logo-text">Movimov</h1>
         </div>
       </Link>
-      <form className="search-bar" onSubmit={handleSearch}>
-        <div className="search-input-container">
-          <FaSearch className="search-icon" onClick={handleSearch} />
-          <input
-            type="text"
-            placeholder="Recherchez un film ou une série..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-      </form>
+      {window.location.pathname !== "/" && (
+        <Input
+          width="20vw"
+          height="50px"
+          placeholder={placeHolder}
+          onSearch={handleSearch}
+          onChange={(e) => setSearchTerm(e.target.value)} 
+        />
+      )}
       <nav className="nav">
         <Link to="/">Accueil</Link> | <Link to="/movies">Films</Link> | <Link to="/favorites">Favoris</Link>
         <div id="darkMode">

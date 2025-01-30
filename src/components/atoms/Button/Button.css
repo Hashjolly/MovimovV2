@@ -8,3 +8,8 @@
     font-family: inherit;
     cursor: pointer;
 }
+
+.generic-button:disabled {
+    background-color: #696969;
+    cursor: not-allowed;
+}

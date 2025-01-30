@@ -1,0 +1,17 @@
+.favorites-page {
+    padding: 30px;
+    background-color: var(--main-color); 
+  }
+  
+  .favorites-page h1 {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  
+  .favorites-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }

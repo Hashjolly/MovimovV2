@@ -48,8 +48,8 @@ export default function Movies() {
   return (
     <div className="movies-page">
       <h1>{searchQuery ? `Résultats de recherche : "${searchQuery}"` : 'Films Populaires'}</h1>
-      <MovieList movies={data?.results ?? []} total_pages={totalPages} toggleFavorite={toggleFavorite} />
-      <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
+      <MovieList movies={data?.results ?? []} total_pages={totalPages} favoritesList={favorites} toggleFavorite={toggleFavorite} />
+      <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
     </div>
   );
 }
