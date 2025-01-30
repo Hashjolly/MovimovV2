@@ -1,5 +1,4 @@
 import { MovieListProps } from "./MovieList.props";
-import { useFavoritesStore } from "app/store";
 import MovieCard from "@components/molecules/MovieCard/MovieCard";
 import "./MovieList.css";
 
