@@ -2,10 +2,6 @@
     text-align: center;
   }
   
-  .nav a:hover {
-    text-decoration: none;
-  }
-  
   .introduction {
     display: flex;
     align-items: center;

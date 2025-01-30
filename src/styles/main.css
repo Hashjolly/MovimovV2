@@ -26,16 +26,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html.dark {
-
-  color-scheme: dark;
-
-  --main-color: #1a1a1a;
-  --second-color: #e6e6e6;
-  --third-color: #bd0000;
-  --last-color: #D4AA7D;
-}
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -50,10 +40,7 @@ h1 {
 
 a {
   text-decoration: none !important;
-}
-
-a:hover {
-  text-decoration: none !important;
+  transition: border-color 0.25s, transform 0.2s ease-in-out;
 }
 
 button {
@@ -69,13 +56,4 @@ button {
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --main-color: #e6e6e6;
-    --second-color: #1a1a1a;
-    --third-color: #bd0000;
-    --last-color: #D4AA7D;
-  }
 }

@@ -57,22 +57,19 @@
     transition: color 0.3s ease;
     font-weight: 700;
     color: var(--third-color);
+    transition: border-color 0.25s, transform 0.2s ease-in-out;
   }
   
   .nav a:hover {
     text-decoration: none!important;
-    color: var(--last-color);
+    transform: scale(1.1);
+    color: var(--hovered-third-color);
   }
-  
+
   .nav Link {
     text-decoration: none!important;
     font-size: 1rem;
     transition: color 0.3s ease;
-  }
-  
-  .nav Link:hover {
-    text-decoration: none!important;
-    color: var(--last-color);
   }
 
   #darkMode {
@@ -123,21 +120,6 @@
   label:active:after {
     width: 30px;
   }
-
-  /* Icône de recherche (loupe) */
-  /* .search-icon {
-    position: absolute;
-    left: 15px;
-    color: #888;
-    font-size: 18px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  } */
-
-  .search-icon:hover {
-    color: #555;
-  }
-
   
   /* Responsive Navbar */
   @media (max-width: 768px) {
