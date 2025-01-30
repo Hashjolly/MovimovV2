@@ -1,3 +1,6 @@
-import { searchMovies } from "./moviesApi";
+import { useMoviesQuery } from "hooks/useMovies";
 
-export { searchMovies };
+export { useMoviesQuery };
+
+export * from './api.props';
+export * from './moviesApi';

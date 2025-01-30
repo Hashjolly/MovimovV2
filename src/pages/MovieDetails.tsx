@@ -1,65 +1,80 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Home.css";
-import popcornImage from '/popcorn.png';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchMovieDetails } from '../api/moviesApi'; 
+import { Movie } from '../api/api.props'; 
+import "./MovieDetails.css"
 
-export function Home() {
+export function MovieDetails() {
+  const { id } = useParams<{ id: string }>();
+  const [movie, setMovie] = useState<Movie | null>(null);
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const movieDetails = await fetchMovieDetails(Number(id));
+        setMovie(movieDetails); 
+      } catch (error) {
+        console.error("Erreur lors de la récupération des détails du film :", error);
+      }
+    };
+
+    if (id) fetchDetails();
+  }, [id]);
+
+  if (!movie) return <p>Chargement...</p>;
+
+  const trailer = movie.videos?.results?.find(
+    (video) => video.type === "Trailer" && video.site === "YouTube"
+  );
+
   return (
-    <div className="home-container">
-      <section className="introduction">
-        <div className="introduction-text">
-            <h1>Page Movie details</h1>
-          <h2>Trouvez, explorez et partagez vos films préférés</h2>
+    <div className="movie-details">
+      <h1>{movie.title}</h1>
+      <div className="movie-header">
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+          className="movie-poster"
+        />
+        <div className="movie-info">
+          <p>{movie.overview}</p>
           <p>
-            Avec <strong>Movimov</strong>, accédez à une immense base de données
-            de films, séries et documentaires. Découvrez des trésors cachés et
-            créez vos listes personnalisées !
+            <strong>Note :</strong> {movie.vote_average} / 10
           </p>
-          <Link to="/movies">
-            <button className="start-button">Commencer maintenant</button>
-          </Link>
+          <p>
+            <strong>Genres :</strong> {movie.genres.map((genre) => genre.name).join(", ")}
+          </p>
+          <p>
+            <strong>Durée :</strong> {movie.runtime} minutes
+          </p>
+          <p>
+            <strong>Date de sortie :</strong> {movie.release_date}
+          </p>
+          <p>
+            <strong>Budget :</strong> ${movie.budget.toLocaleString()}
+          </p>
+          <p>
+            <strong>Revenus :</strong> ${movie.revenue.toLocaleString()}
+          </p>
         </div>
-        <div className="introduction-image">
-          <img
-            src={popcornImage}
-            alt="Popcorn et écran de cinéma"
-          />
-        </div>
-      </section>
+      </div>
 
-      <section id="about" className="about">
-        <h2>À propos</h2>
-        <p>
-          Movimov est votre plateforme ultime pour explorer les films de tous
-          genres et de toutes époques. Que vous soyez fan d'horreur, de comédie,
-          de drame ou de science-fiction, nous avons quelque chose pour vous.
-        </p>
-      </section>
-
-      <section id="features" className="features">
-        <h2>Nos fonctionnalités</h2>
-        <div className="features-grid">
-          <div className="feature">
-            <h3>Recherche Avancée</h3>
-            <p>
-              Filtrez les films par genre, année, popularité et bien plus
-              encore.
-            </p>
-          </div>
-          <div className="feature">
-            <h3>Listes Personnalisées</h3>
-            <p>Créez et partagez vos propres listes de films avec vos amis.</p>
-          </div>
-          <div className="feature">
-            <h3>Évaluations et Critiques</h3>
-            <p>
-              Lisez les avis des autres utilisateurs et partagez les vôtres.
-            </p>
-          </div>
+      {trailer && (
+        <div className="movie-trailer">
+          <h2>Bande-annonce</h2>
+          <iframe
+            width="100%"
+            height="500"
+            src={`https://www.youtube.com/embed/${trailer.key}`}
+            title="Bande-annonce"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
         </div>
-      </section>
+      )}
     </div>
   );
 }
 
-export default Home;
+export default MovieDetails;

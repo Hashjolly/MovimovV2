@@ -1,65 +1,55 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Home.css";
-import popcornImage from '/popcorn.png';
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useMoviesStore } from 'app/store';
+import { useFavoritesStore } from 'app/store';
+import { useMoviesQuery } from 'api';
+import { MovieList } from '@components/organisms';
+import { Pagination } from '@components/molecules';
+import { Movie } from 'api';
+import "./Movies.css"
 
-export function Home() {
+export default function Movies() {
+  const currentPage = useMoviesStore((state) => state.currentPage);
+  const setPage = useMoviesStore((state) => state.setPage);
+
+  const { favorites, addFavorite, removeFavorite } = useFavoritesStore();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get('search') ?? '';
+  const urlPage = parseInt(searchParams.get('page') ?? '1', 10) || 1;
+
+  useEffect(() => {
+    if (currentPage !== urlPage) {
+      setPage(urlPage);
+    }
+  }, [urlPage, currentPage, setPage]);
+
+  const { data, isLoading, isError } = useMoviesQuery(searchQuery || 'populaires', currentPage);
+
+  const totalPages = data?.total_pages || 1;
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage < 1 || newPage > totalPages) return;
+    setPage(newPage);
+    navigate(`?page=${newPage}${searchQuery ? `&search=${searchQuery}` : ''}`);
+  };
+
+  const toggleFavorite = (movie: Movie) => {
+    favorites.find((fav) => fav.id === movie.id)
+      ? removeFavorite(movie)
+      : addFavorite(movie);
+  };
+
+  if (isLoading) return <p>Chargement des films...</p>;
+  if (isError) return <p>Erreur lors de la récupération des films...</p>;
+
   return (
-    <div className="home-container">
-      <section className="introduction">
-        <div className="introduction-text">
-            <h1>Page Movie</h1>
-          <h2>Trouvez, explorez et partagez vos films préférés</h2>
-          <p>
-            Avec <strong>Movimov</strong>, accédez à une immense base de données
-            de films, séries et documentaires. Découvrez des trésors cachés et
-            créez vos listes personnalisées !
-          </p>
-          <Link to="/movies">
-            <button className="start-button">Commencer maintenant</button>
-          </Link>
-        </div>
-        <div className="introduction-image">
-          <img
-            src={popcornImage}
-            alt="Popcorn et écran de cinéma"
-          />
-        </div>
-      </section>
-
-      <section id="about" className="about">
-        <h2>À propos</h2>
-        <p>
-          Movimov est votre plateforme ultime pour explorer les films de tous
-          genres et de toutes époques. Que vous soyez fan d'horreur, de comédie,
-          de drame ou de science-fiction, nous avons quelque chose pour vous.
-        </p>
-      </section>
-
-      <section id="features" className="features">
-        <h2>Nos fonctionnalités</h2>
-        <div className="features-grid">
-          <div className="feature">
-            <h3>Recherche Avancée</h3>
-            <p>
-              Filtrez les films par genre, année, popularité et bien plus
-              encore.
-            </p>
-          </div>
-          <div className="feature">
-            <h3>Listes Personnalisées</h3>
-            <p>Créez et partagez vos propres listes de films avec vos amis.</p>
-          </div>
-          <div className="feature">
-            <h3>Évaluations et Critiques</h3>
-            <p>
-              Lisez les avis des autres utilisateurs et partagez les vôtres.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="movies-page">
+      <h1>{searchQuery ? `Résultats de recherche : "${searchQuery}"` : 'Films Populaires'}</h1>
+      <MovieList movies={data?.results ?? []} total_pages={totalPages} toggleFavorite={toggleFavorite} />
+      <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
     </div>
   );
 }
-
-export default Home;

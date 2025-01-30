@@ -1,10 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@atoms/Button";
 import { Input }  from "@atoms/Input";
 import "./Home.css";
 import popcornImage from '/popcorn.png';
-import { Header } from "@components/organisms";
 
 export function Home() {
   return (

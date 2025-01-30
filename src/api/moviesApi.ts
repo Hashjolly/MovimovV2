@@ -1,38 +1,29 @@
-import axios, { AxiosResponse } from "axios";
+import axios from 'axios';
+import { Movie, SearchResponse } from './api.props'; 
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_TMDB_BASE_URL,
   params: {
     api_key: import.meta.env.VITE_TMDB_API_KEY,
-    language: "fr-FR",
+    language: 'fr-FR',
   },
 });
 
-interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  release_date: string;
-}
 
-interface SearchResponse {
-  results: Movie[];
-}
-
-export const searchMovies = async (query: string): Promise<AxiosResponse<SearchResponse>> => {
-  try {
-    return await api.get("/search/movie", { params: { query } });
-  } catch (error) {
-    console.error("Erreur de recherche : ", error);
-
-    return {
-      data: { results: [] },
-      status: 500,
-      statusText: "Internal Server Error",
-      headers: {},
-      config: {},
-    } as unknown as AxiosResponse<SearchResponse>;
-  }
+export const fetchMovies = async (query: string, page: number): Promise<SearchResponse> => {
+  const { data } = await api.get('/search/movie', {
+    params: {
+      query,
+      page,
+    },
+  });
+  return data;
 };
 
-export default api;
+
+export const fetchMovieDetails = async (id: number): Promise<Movie> => {
+  const { data } = await api.get(`/movie/${id}`, {
+    params: { append_to_response: 'videos' },
+  });
+  return data;
+};

@@ -1,65 +1,42 @@
-import React from "react";
+import { useFavoritesStore } from "app/store";
 import { Link } from "react-router-dom";
-import "./Home.css";
-import popcornImage from '/popcorn.png';
+import { Movie } from "api/api.props";
+import { useEffect } from "react";
 
-export function Home() {
+export default function Favorites() {
+  const { favorites, removeFavorite } = useFavoritesStore();
+
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      const parsedFavorites: Movie[] = JSON.parse(storedFavorites);
+      console.log("Favoris récupérés du localStorage :", parsedFavorites);
+    }
+  }, []);
+
   return (
-    <div className="home-container">
-      <section className="introduction">
-        <div className="introduction-text">
-            <h1>Page Favorite</h1>
-          <h2>Trouvez, explorez et partagez vos films préférés</h2>
-          <p>
-            Avec <strong>Movimov</strong>, accédez à une immense base de données
-            de films, séries et documentaires. Découvrez des trésors cachés et
-            créez vos listes personnalisées !
-          </p>
-          <Link to="/movies">
-            <button className="start-button">Commencer maintenant</button>
-          </Link>
-        </div>
-        <div className="introduction-image">
-          <img
-            src={popcornImage}
-            alt="Popcorn et écran de cinéma"
-          />
-        </div>
-      </section>
-
-      <section id="about" className="about">
-        <h2>À propos</h2>
-        <p>
-          Movimov est votre plateforme ultime pour explorer les films de tous
-          genres et de toutes époques. Que vous soyez fan d'horreur, de comédie,
-          de drame ou de science-fiction, nous avons quelque chose pour vous.
-        </p>
-      </section>
-
-      <section id="features" className="features">
-        <h2>Nos fonctionnalités</h2>
-        <div className="features-grid">
-          <div className="feature">
-            <h3>Recherche Avancée</h3>
-            <p>
-              Filtrez les films par genre, année, popularité et bien plus
-              encore.
-            </p>
-          </div>
-          <div className="feature">
-            <h3>Listes Personnalisées</h3>
-            <p>Créez et partagez vos propres listes de films avec vos amis.</p>
-          </div>
-          <div className="feature">
-            <h3>Évaluations et Critiques</h3>
-            <p>
-              Lisez les avis des autres utilisateurs et partagez les vôtres.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="favorites-page">
+      <h1>Mes Favoris</h1>
+      <div className="favorites-grid">
+        {favorites.length > 0 ? (
+          favorites.map((movie: Movie, index: number) => (
+            <div className="movie-card" key={`${movie.id}-${index}`}>
+              <Link to={`/movie/${movie.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                  alt={movie.title}
+                />
+              </Link>
+              <h3>{movie.title}</h3>
+              <button onClick={() => removeFavorite(movie)}>
+                Retirer des favoris
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>Aucun film dans vos favoris.</p>
+        )}
+      </div>
     </div>
   );
 }
-
-export default Home;
