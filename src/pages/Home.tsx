@@ -1,20 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "@components/atoms/Button/Button";
+import { Button } from "@atoms/Button";
+import { Input }  from "@atoms/Input";
 import "./Home.css";
-import popcornImage from '../assets/popcorn.png';
+import popcornImage from '/popcorn.png';
+import { Header } from "@components/organisms";
 
 export function Home() {
   return (
     <div className="home-container">
       <section className="introduction">
         <div className="introduction-text">
+          <Header />
           <h2>Trouvez, explorez et partagez vos films préférés</h2>
           <p>
             Avec <strong>Movimov</strong>, accédez à une immense base de données
             de films, séries et documentaires. Découvrez des trésors cachés et
             créez vos listes personnalisées !
           </p>
+          <Input
+            width="20vw"
+            height="50px"
+            placeholder="Rechercher un film ou une série..."
+            onChange={() => {}} />
+          <br />
           <Link to="/movies">
           <Button
             width="200px"
