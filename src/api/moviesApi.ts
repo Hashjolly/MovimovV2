@@ -19,20 +19,20 @@ interface SearchResponse {
   results: Movie[];
 }
 
-export const searchMovies = (query: string): Promise<AxiosResponse<SearchResponse>> => {
-  return api
-    .get("/search/movie", { params: { query } })
-    .catch((error) => {
-      console.error("Erreur de recherche : ", error);
+export const searchMovies = async (query: string): Promise<AxiosResponse<SearchResponse>> => {
+  try {
+    return await api.get("/search/movie", { params: { query } });
+  } catch (error) {
+    console.error("Erreur de recherche : ", error);
 
-      return {
-          data: { results: [] },
-          status: 500,
-          statusText: "Internal Server Error",
-          headers: {},
-          config: {},
-      } as unknown as AxiosResponse<SearchResponse>;
-    });
+    return {
+      data: { results: [] },
+      status: 500,
+      statusText: "Internal Server Error",
+      headers: {},
+      config: {},
+    } as unknown as AxiosResponse<SearchResponse>;
+  }
 };
 
 export default api;

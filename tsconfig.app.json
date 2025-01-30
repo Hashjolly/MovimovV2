@@ -25,10 +25,14 @@
     /* Ajouts */
     "baseUrl": "./src",
     "paths": {
+      "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
+      "@atoms/*": ["components/atoms/*"],
+      "@molecules/*": ["components/molecules/*"],
+      "@organisms/*": ["components/organisms/*"],
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
-      "@services/*": ["services/*"]
+      "@services/*": ["services/*"],
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
