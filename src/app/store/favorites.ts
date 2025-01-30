@@ -1,9 +1,5 @@
 import { create } from 'zustand';
-
-interface Movie {
-  id: number;
-  title: string;
-}
+import { Movie } from 'api';
 
 interface FavoriteStore {
   favorites: Movie[];

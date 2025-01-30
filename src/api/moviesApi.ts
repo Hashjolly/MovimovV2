@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Movie, SearchResponse } from './api.props'; // On importe les interfaces Movie et SearchResponse
+import { Movie, SearchResponse } from './api.props'; 
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_TMDB_BASE_URL,
