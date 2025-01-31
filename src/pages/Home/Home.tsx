@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@atoms/Button";
-import { Input }  from "@atoms/Input";
+import { Button } from "@components/atoms";
+import { Input } from "@components/atoms";
 import "./Home.css";
 import popcornImage from '/popcorn.png';
 
