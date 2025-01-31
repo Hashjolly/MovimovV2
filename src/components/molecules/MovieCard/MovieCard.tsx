@@ -7,7 +7,7 @@ import './MovieCard.css';
 const MovieCard: React.FC<MovieCardProps> = ({ movie, isFavorite, toggleFavorite }) => {
   return (
     <div className="movie-card">
-      <Link to={`/movie/${movie.id}`}>
+      <Link to={`/MovimovV2/movie/${movie.id}`}>
         <img
           src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
           alt={movie.title}

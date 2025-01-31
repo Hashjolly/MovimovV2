@@ -14,7 +14,7 @@ export function Home() {
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
-      navigate(`/movies?search=${encodeURIComponent(searchTerm)}`);
+      navigate(`/MovimovV2/movies?search=${encodeURIComponent(searchTerm)}`);
     } else {
       setSearchEmpty(true);
       setplaceHolder("Veuillez entrer un titre de film ou de série.");
@@ -49,7 +49,7 @@ export function Home() {
               onChange={handleInputChange} 
             />
             <br />
-            <Link to="/movies">
+            <Link to="/MovimovV2/movies">
             <Button
               width="200px"
               height="50px"

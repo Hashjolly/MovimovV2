@@ -10,11 +10,11 @@ function App() {
       <BrowserRouter>
       <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/movie/:id" element={<MovieDetails />} />
+          <Route path="/MovimovV2/" element={<Home />} />
+          <Route path="/MovimovV2/movies" element={<Movies />} />
+          <Route path="/MovimovV2/movie/:id" element={<MovieDetails />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/MovimovV2/favorites" element={<Favorites />} />
         </Routes>
         <Footer />
       </BrowserRouter>

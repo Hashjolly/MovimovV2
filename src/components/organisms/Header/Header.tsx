@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
-      navigate(`/movies?search=${encodeURIComponent(searchTerm)}`);
+      navigate(`/MovimovV2/movies?search=${encodeURIComponent(searchTerm)}`);
     } else {
       setplaceHolder("Veuillez entrer un titre de film ou de série");
     }
@@ -30,13 +30,13 @@ export const Header: React.FC = () => {
 
   return (
     <header className="header">
-      <Link to="/">
+      <Link to="/MovimovV2/">
         <div className="logo-container">
           <img src={logo} alt="Movimov Logo" className="logo-image" />
           <h1 className="logo-text">Movimov</h1>
         </div>
       </Link>
-      {window.location.pathname !== "/" && (
+      {window.location.pathname !== "/MovimovV2/" && (
         <Input
           width="20vw"
           height="50px"
@@ -46,7 +46,7 @@ export const Header: React.FC = () => {
         />
       )}
       <nav className="nav">
-        <Link to="/">Accueil</Link> | <Link to="/movies">Films</Link> | <Link to="/favorites">Favoris</Link>
+        <Link to="/MovimovV2/">Accueil</Link> | <Link to="/MovimovV2/movies">Films</Link> | <Link to="/MovimovV2/favorites">Favoris</Link>
         <div id="darkMode">
           <input
             type="checkbox"

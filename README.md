@@ -37,7 +37,7 @@ Movimov est une application web permettant de rechercher, explorer et gérer vos
 
 ## Utilisation
 
-- **Page d'accueil** : Recherchez des films ou séries en utilisant la barre de recherche.
+- **Page d'accueil** : Recherchez des films ou séries en utilisant la barre de recherche présente sur la page d'accueil ou dans le header.
 - **Page des films** : Affichez les résultats de recherche et naviguez entre les pages.
 - **Page des détails** : Cliquez sur un film pour voir ses détails.
 - **Page des favoris** : Consultez vos films favoris.
@@ -56,61 +56,11 @@ Le projet est structuré selon le pattern Atomic Design.
 - **React Router** : Gestion de la navigation entre les pages.
 - **Styled Components** : Styles CSS dans les composants.
 
-## Contribuer
-
-Les contributions sont les bienvenues ! Pour contribuer :
-
-1. Forkez le projet.
-2. Créez une branche pour votre fonctionnalité :
-  ```bash
-  git checkout -b feature/ma-fonctionnalité
-  ```
-3. Commitez vos modifications :
-  ```bash
-  git commit -m 'Ajout de ma fonctionnalité'
-  ```
-4. Pushez votre branche :
-  ```bash
-  git push origin feature/ma-fonctionnalité
-  ```
-5. Ouvrez une Pull Request.
-
-## Licence
-
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
-
 ## Auteurs
 
-- **Votre Nom** - Développeur principal - [Votre Profil GitHub](https://github.com/votre-utilisateur)
+- **Matthias**
+- **Hugo**
 
-## Remerciements
 
-Merci à tous ceux qui ont contribué à ce projet et à l'équipe de formation pour leur soutien et leurs conseils.
-
-## Déploiement
-
-Pour déployer l'application sur GitHub Pages :
-
-1. Ajoutez le script de déploiement dans `package.json` :
-  ```json
-  "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  }
-  ```
-2. Installez `gh-pages` :
-  ```bash
-  npm install --save-dev gh-pages
-  ```
-3. Déployez l'application :
-  ```bash
-  npm run deploy
-  ```
 
 L'application sera disponible à l'adresse `https://votre-utilisateur.github.io/movimov`.
-
-## Conclusion
-
-Ce projet démontre l'utilisation de React, TypeScript, Zustand, et TanStack Query pour construire une application web complète et maintenable. Amusez-vous à explorer et améliorer Movimov !
-
-Bon coding !

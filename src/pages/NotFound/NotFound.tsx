@@ -12,7 +12,7 @@ export default function NotFound() {
           <p>
             Oups ! La page que vous recherchez n'existe pas ou a été déplacée.
           </p>
-          <Link to="/">
+          <Link to="/MovimovV2/">
             <Button
               width="200px"
               height="50px"
