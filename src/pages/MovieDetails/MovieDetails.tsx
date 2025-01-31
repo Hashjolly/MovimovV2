@@ -1,61 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieDetails } from '../../api/moviesApi'; 
-import { Movie } from '@api/index'; 
+import { useMoviesStore } from 'app/store';
 import "./MovieDetails.css"
 
 export function MovieDetails() {
   const { id } = useParams<{ id: string }>();
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const { selectedMovie, fetchMovie } = useMoviesStore();
 
   useEffect(() => {
-    const fetchDetails = async () => {
-      try {
-        const movieDetails = await fetchMovieDetails(Number(id));
-        setMovie(movieDetails); 
-      } catch (error) {
-        console.error("Erreur lors de la récupération des détails du film :", error);
-      }
-    };
+    if (id) fetchMovie(Number(id));
+  }, [id, fetchMovie]);
 
-    if (id) fetchDetails();
-  }, [id]);
+  if (!selectedMovie) return <p>Chargement...</p>;
 
-  if (!movie) return <p>Chargement...</p>;
-
-  const trailer = movie.videos?.results?.find(
+  const trailer = selectedMovie.videos?.results?.find(
     (video) => video.type === "Trailer" && video.site === "YouTube"
   );
 
   return (
     <div className="movie-details">
-      <h1>{movie.title}</h1>
+      <h1>{selectedMovie.title}</h1>
       <div className="movie-header">
         <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title}
+          src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+          alt={selectedMovie.title}
           className="movie-poster"
         />
         <div className="movie-info">
-          <p>{movie.overview}</p>
-          <p>
-            <strong>Note :</strong> {movie.vote_average} / 10
-          </p>
-          <p>
-            <strong>Genres :</strong> {movie.genres.map((genre) => genre.name).join(", ")}
-          </p>
-          <p>
-            <strong>Durée :</strong> {movie.runtime} minutes
-          </p>
-          <p>
-            <strong>Date de sortie :</strong> {movie.release_date}
-          </p>
-          <p>
-            <strong>Budget :</strong> ${movie.budget.toLocaleString()}
-          </p>
-          <p>
-            <strong>Revenus :</strong> ${movie.revenue.toLocaleString()}
-          </p>
+          <p>{selectedMovie.overview}</p>
+          <p><strong>Note :</strong> {selectedMovie.vote_average} / 10</p>
+          <p><strong>Genres :</strong> {selectedMovie.genres.map((genre) => genre.name).join(", ")}</p>
+          <p><strong>Durée :</strong> {selectedMovie.runtime} minutes</p>
+          <p><strong>Date de sortie :</strong> {selectedMovie.release_date}</p>
+          <p><strong>Budget :</strong> ${selectedMovie.budget.toLocaleString()}</p>
+          <p><strong>Revenus :</strong> ${selectedMovie.revenue.toLocaleString()}</p>
         </div>
       </div>
 

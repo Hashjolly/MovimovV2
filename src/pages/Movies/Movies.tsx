@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useMoviesStore } from 'app/store';
 import { useFavoritesStore } from 'app/store';
@@ -11,6 +10,7 @@ import "./Movies.css"
 export default function Movies() {
   const currentPage = useMoviesStore((state) => state.currentPage);
   const setPage = useMoviesStore((state) => state.setPage);
+  const syncPageWithURL = useMoviesStore((state) => state.syncPageWithURL);
 
   const { favorites, addFavorite, removeFavorite } = useFavoritesStore();
 
@@ -20,11 +20,7 @@ export default function Movies() {
   const searchQuery = searchParams.get('search') ?? '';
   const urlPage = parseInt(searchParams.get('page') ?? '1', 10) || 1;
 
-  useEffect(() => {
-    if (currentPage !== urlPage) {
-      setPage(urlPage);
-    }
-  }, [urlPage, currentPage, setPage]);
+  syncPageWithURL(urlPage);
 
   const { data, isLoading, isError } = useMoviesQuery(searchQuery || 'populaires', currentPage);
 
@@ -38,7 +34,7 @@ export default function Movies() {
 
   const toggleFavorite = (movie: Movie) => {
     favorites.find((fav) => fav.id === movie.id)
-      ? removeFavorite(movie)
+      ? removeFavorite(movie.id)
       : addFavorite(movie);
   };
 

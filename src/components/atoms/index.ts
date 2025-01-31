@@ -1,7 +1,7 @@
-import StyledButton from "./Button/Button"
-import StyledInput from "./Input/Input"
+import {Button} from "./Button/Button"
+import {Input} from "./Input/Input"
 import { Skeleton } from "./Skeleton";
 
-export { StyledButton };
-export { StyledInput };
+export { Button };
+export { Input };
 export { Skeleton };
