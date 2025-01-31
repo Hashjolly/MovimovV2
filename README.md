@@ -47,6 +47,38 @@ Movimov est une application web permettant de rechercher, explorer et gérer vos
 
 Le projet est structuré selon le pattern Atomic Design.
 
+## Arborescence du projet
+
+Voici l'arborescence du projet Movimov :
+
+```
+movimovv2/
+├── public/
+│   ├── logo.png
+│   └── popcorn.png
+├── src/
+│   ├── api/
+|   ├── app/
+│       └── store/
+│   ├── assets/
+│   ├── components/
+│   │   ├── atoms/
+│   │   ├── molecules/
+│   │   ├── organisms/
+│   │   └── templates/
+│   ├── hooks/
+│   ├── pages/
+│   ├── styles/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── .env
+├── .gitignore
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
+
 ## Technologies utilisées
 
 - **React** : Bibliothèque JavaScript pour construire des interfaces utilisateur.
@@ -63,4 +95,4 @@ Le projet est structuré selon le pattern Atomic Design.
 
 
 
-L'application sera disponible à l'adresse `https://votre-utilisateur.github.io/movimov`.
+L'application sera disponible à l'adresse `https://hashjolly.github.io/MovimovV2/`.
